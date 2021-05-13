@@ -18,7 +18,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: read environment
-      run: nslookup https://apt.repos.intel.com
+      run: |
+        dig apt.repos.intel.com +short
+        curl -D -  -o /dev/null  -H "Pragma: akamai-x-get-request-id, akamai-x-cache-on, akamai-x-cache-remote-on, akamai-x-check-cacheable, akamai-x-get-cache-key, akamai-x-get-extracted-values, akamai-x-get-true-cache-key, akamai-x-cache-remote, akamai-x-get-request-id, akamai-x-get-nonces" https://apt.repos.intel.com/test.txt 
     - name: setup apt repo
       run: |
         sudo dpkg --add-architecture i386
