@@ -12,7 +12,31 @@ env:
 
 jobs:
   build_linux_apt:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+    - uses: actions/checkout@v2
+    - name: dig akamai DNS
+      run: dig apt.repos.intel.com +short
+    - name: download test file with pragma keys
+      run: |
+        curl -D -  -o /dev/null  -H "Pragma: $PRAGMA_KEYS" https://apt.repos.intel.com/test.txt
+  build_linux_apt2:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+    - uses: actions/checkout@v2
+    - name: dig akamai DNS
+      run: dig apt.repos.intel.com +short
+    - name: download test file with pragma keys
+      run: |
+        curl -D -  -o /dev/null  -H "Pragma: $PRAGMA_KEYS" https://apt.repos.intel.com/test.txt 
+  build_linux_apt3:
+    runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
