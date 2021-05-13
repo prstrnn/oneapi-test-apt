@@ -18,10 +18,10 @@ jobs:
         shell: bash
     steps:
     - uses: actions/checkout@v2
-    - name: read environment
+    - name: dig akamai DNS
+      run: dig apt.repos.intel.com +short
+    - name: download test file with pragma keys
       run: |
-        dig apt.repos.intel.com +short
-        echo ""
         curl -D -  -o /dev/null  -H "Pragma: $PRAGMA_KEYS" https://apt.repos.intel.com/test.txt 
     - name: setup apt repo
       run: |
