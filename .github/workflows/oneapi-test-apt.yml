@@ -22,7 +22,7 @@ jobs:
       run: dig apt.repos.intel.com +short
     - name: dig akamai DNS with city grabbing
       run: |
-        apt-get install -y whois
+        sudo apt-get install -y whois
         whois $(dig apt.repos.intel.com +short | tail -n1) | grep -iE ^country:        
         whois $(dig apt.repos.intel.com +short | tail -n1) | grep -iE ^city:
         whois $(dig apt.repos.intel.com +short | tail -n1)
