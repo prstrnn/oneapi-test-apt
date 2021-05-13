@@ -21,13 +21,12 @@ jobs:
     - name: dig akamai DNS
       run: dig apt.repos.intel.com +short
     - name: install whois
-      run: sudo apt-get install -y whois
+      run: sudo apt-get install -y whois jq
     - name: dig akamai DNS with city grabbing
       run: |
         export ip_=$(dig apt.repos.intel.com +short | tail -n1)
         echo $ip_
-        whois $ip_ | grep -iE ^country:
-        whois $ip_ | grep -iE ^city:
+        curl -s https://ipvigilante.com/$($ip) | jq '.data.city_name, .data.country_name'
     - name: download test file with pragma keys
       run: |
         curl -D -  -o /dev/null  -H "Pragma: $PRAGMA_KEYS" https://apt.repos.intel.com/test.txt 
@@ -35,8 +34,9 @@ jobs:
       run: |
         export ip_=$(dig apt.repos.intel.com +short | tail -n1)
         echo $ip_
-        whois $ip_
+        curl -s https://ipvigilante.com/$($ip)
   build_linux_apt2:
+  build_linux_apt:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -46,17 +46,22 @@ jobs:
     - name: dig akamai DNS
       run: dig apt.repos.intel.com +short
     - name: install whois
-      run: sudo apt-get install -y whois
+      run: sudo apt-get install -y whois jq
     - name: dig akamai DNS with city grabbing
       run: |
         export ip_=$(dig apt.repos.intel.com +short | tail -n1)
         echo $ip_
-        whois $ip_ | grep -iE ^country:
-        whois $ip_ | grep -iE ^city:
+        curl -s https://ipvigilante.com/$($ip) | jq '.data.city_name, .data.country_name'
     - name: download test file with pragma keys
       run: |
         curl -D -  -o /dev/null  -H "Pragma: $PRAGMA_KEYS" https://apt.repos.intel.com/test.txt 
+    - name: dig akamai DNS full whois
+      run: |
+        export ip_=$(dig apt.repos.intel.com +short | tail -n1)
+        echo $ip_
+        curl -s https://ipvigilante.com/$($ip)
   build_linux_apt3:
+  build_linux_apt:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -66,13 +71,17 @@ jobs:
     - name: dig akamai DNS
       run: dig apt.repos.intel.com +short
     - name: install whois
-      run: sudo apt-get install -y whois
+      run: sudo apt-get install -y whois jq
     - name: dig akamai DNS with city grabbing
       run: |
         export ip_=$(dig apt.repos.intel.com +short | tail -n1)
         echo $ip_
-        whois $ip_ | grep -iE ^country:
-        whois $ip_ | grep -iE ^city:
+        curl -s https://ipvigilante.com/$($ip) | jq '.data.city_name, .data.country_name'
     - name: download test file with pragma keys
       run: |
         curl -D -  -o /dev/null  -H "Pragma: $PRAGMA_KEYS" https://apt.repos.intel.com/test.txt 
+    - name: dig akamai DNS full whois
+      run: |
+        export ip_=$(dig apt.repos.intel.com +short | tail -n1)
+        echo $ip_
+        curl -s https://ipvigilante.com/$($ip)
