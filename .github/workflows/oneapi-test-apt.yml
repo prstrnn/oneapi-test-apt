@@ -20,6 +20,7 @@ jobs:
     - name: setup apt repo
       run: |
         sudo dpkg --add-architecture i386
+        chmod +x scripts/setup_apt_repo_linux.sh
         scripts/setup_apt_repo_linux.sh
         grep ^ /etc/apt/sources.list /etc/apt/sources.list.d/*
     - name: print packages info
