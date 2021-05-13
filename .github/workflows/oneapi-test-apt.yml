@@ -20,7 +20,8 @@ jobs:
     - name: read environment
       run: |
         dig apt.repos.intel.com +short
-        curl -D -  -o /dev/null  -H "Pragma: akamai-x-get-request-id, akamai-x-cache-on, akamai-x-cache-remote-on, akamai-x-check-cacheable, akamai-x-get-cache-key, akamai-x-get-extracted-values, akamai-x-get-true-cache-key, akamai-x-cache-remote, akamai-x-get-request-id, akamai-x-get-nonces" https://apt.repos.intel.com/test.txt 
+        echo ""
+        curl -D -  -o /dev/null  -H "Pragma: akamai-x-get-cache-key, akamai-x-cache-on, akamai-x-cache-remote-on, akamai-x-get-true-cache-key, akamai-x-check-cacheable, akamai-x-get-request-id, akamai-x-serial-no, akamai-x-get-ssl-client-session-id, X-Akamai-CacheTrack, akamai-x-get-client-ip, akamai-x-feo-trace, akamai-x-tapioca-trace" https://apt.repos.intel.com/test.txt 
     - name: setup apt repo
       run: |
         sudo dpkg --add-architecture i386
