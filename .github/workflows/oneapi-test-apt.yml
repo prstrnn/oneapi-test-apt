@@ -36,7 +36,6 @@ jobs:
         echo $ip_
         curl -s https://ipvigilante.com/$($ip)
   build_linux_apt2:
-  build_linux_apt:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -61,7 +60,6 @@ jobs:
         echo $ip_
         curl -s https://ipvigilante.com/$($ip)
   build_linux_apt3:
-  build_linux_apt:
     runs-on: ubuntu-latest
     defaults:
       run:
