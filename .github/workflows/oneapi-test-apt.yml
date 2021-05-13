@@ -25,6 +25,7 @@ jobs:
     - name: dig akamai DNS with city grabbing
       run: |
         export ip_=$(dig apt.repos.intel.com +short | tail -n1)
+        echo $ip_
         whois $ip_ | grep -iE ^country:
         whois $ip_ | grep -iE ^city:
     - name: download test file with pragma keys
@@ -44,6 +45,7 @@ jobs:
     - name: dig akamai DNS with city grabbing
       run: |
         export ip_=$(dig apt.repos.intel.com +short | tail -n1)
+        echo $ip_
         whois $ip_ | grep -iE ^country:
         whois $ip_ | grep -iE ^city:
     - name: download test file with pragma keys
@@ -63,6 +65,7 @@ jobs:
     - name: dig akamai DNS with city grabbing
       run: |
         export ip_=$(dig apt.repos.intel.com +short | tail -n1)
+        echo $ip_
         whois $ip_ | grep -iE ^country:
         whois $ip_ | grep -iE ^city:
     - name: download test file with pragma keys
