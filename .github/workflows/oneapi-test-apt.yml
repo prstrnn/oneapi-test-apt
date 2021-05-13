@@ -24,8 +24,8 @@ jobs:
       run: sudo apt-get install -y whois
     - name: dig akamai DNS with city grabbing
       run: |
-        ip_ = dig apt.repos.intel.com +short | tail -n1
-        whois $ip_ | grep -iE ^country:        
+        export ip_=$(dig apt.repos.intel.com +short | tail -n1)
+        whois $ip_ | grep -iE ^country:
         whois $ip_ | grep -iE ^city:
     - name: download test file with pragma keys
       run: |
