@@ -23,15 +23,3 @@ jobs:
     - name: download test file with pragma keys
       run: |
         curl -D -  -o /dev/null  -H "Pragma: $PRAGMA_KEYS" https://apt.repos.intel.com/test.txt 
-    - name: setup apt repo
-      run: |
-        sudo dpkg --add-architecture i386
-        chmod +x scripts/setup_apt_repo_linux.sh
-        scripts/setup_apt_repo_linux.sh
-        grep ^ /etc/apt/sources.list /etc/apt/sources.list.d/*
-    - name: print packages info
-      run: sudo apt-cache show python3 python-jsonschema intel-oneapi-*
-    - name: dry-run install oneapi
-      run: sudo apt install --dry-run $(apt-cache search intel-oneapi | grep -v intelfpga | grep -v -- '-tail$' | awk '{print $1}')
-    - name: dry-run install mpi
-      run: sudo apt install --dry-run $(apt-cache search intel-mpi | grep -v intel-mpi-2019.0-045 | grep -v -- '-tail$' | awk '{print $1}')
