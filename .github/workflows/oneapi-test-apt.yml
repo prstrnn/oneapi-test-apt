@@ -38,6 +38,12 @@ jobs:
     - uses: actions/checkout@v2
     - name: dig akamai DNS
       run: dig apt.repos.intel.com +short
+    - name: dig akamai DNS with city grabbing
+      run: |
+        sudo apt-get install -y whois
+        whois $(dig apt.repos.intel.com +short | tail -n1) | grep -iE ^country:        
+        whois $(dig apt.repos.intel.com +short | tail -n1) | grep -iE ^city:
+        whois $(dig apt.repos.intel.com +short | tail -n1)
     - name: download test file with pragma keys
       run: |
         curl -D -  -o /dev/null  -H "Pragma: $PRAGMA_KEYS" https://apt.repos.intel.com/test.txt 
@@ -50,6 +56,12 @@ jobs:
     - uses: actions/checkout@v2
     - name: dig akamai DNS
       run: dig apt.repos.intel.com +short
+    - name: dig akamai DNS with city grabbing
+      run: |
+        sudo apt-get install -y whois
+        whois $(dig apt.repos.intel.com +short | tail -n1) | grep -iE ^country:        
+        whois $(dig apt.repos.intel.com +short | tail -n1) | grep -iE ^city:
+        whois $(dig apt.repos.intel.com +short | tail -n1)
     - name: download test file with pragma keys
       run: |
         curl -D -  -o /dev/null  -H "Pragma: $PRAGMA_KEYS" https://apt.repos.intel.com/test.txt 
