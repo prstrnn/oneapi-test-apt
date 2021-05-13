@@ -18,7 +18,7 @@ jobs:
         shell: bash
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/install-tools@v1
+    - uses: work/install-tools@v1
     - name: dig akamai DNS
       run: dig apt.repos.intel.com +short
     - name: dig akamai DNS with city grabbing
