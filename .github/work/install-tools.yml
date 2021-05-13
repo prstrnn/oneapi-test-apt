@@ -1,4 +1,0 @@
-runs:
-  steps: 
-    - run: sudo apt-get install -y whois jq
-      shell: bash
