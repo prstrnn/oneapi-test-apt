@@ -17,6 +17,8 @@ jobs:
         shell: bash
     steps:
     - uses: actions/checkout@v2
+    - name: read environment
+      run: nslookup https://apt.repos.intel.com
     - name: setup apt repo
       run: |
         sudo dpkg --add-architecture i386
