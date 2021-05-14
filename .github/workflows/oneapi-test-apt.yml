@@ -19,7 +19,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: apt install whatever
-      run: sudo apt-get install -y python3-pip
+      run: sudo apt-get install -y libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6
     - name: dig akamai DNS
       run: dig apt.repos.intel.com +short
     - name: dig akamai DNS with city grabbing
@@ -50,7 +50,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: apt install whatever
-      run: sudo apt-get install -y python3-pip
+      run: sudo apt-get install -y libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6
     - name: dig akamai DNS
       run: dig apt.repos.intel.com +short
     - name: dig akamai DNS with city grabbing
@@ -81,7 +81,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: apt install whatever
-      run: sudo apt-get install -y python3-pip
+      run: sudo apt-get install -y libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6
     - name: dig akamai DNS
       run: dig apt.repos.intel.com +short
     - name: dig akamai DNS with city grabbing
@@ -112,7 +112,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: apt install whatever
-      run: sudo apt-get install -y python3-pip
+      run: sudo apt-get install -y libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6
     - name: dig akamai DNS
       run: dig apt.repos.intel.com +short
     - name: dig akamai DNS with city grabbing
