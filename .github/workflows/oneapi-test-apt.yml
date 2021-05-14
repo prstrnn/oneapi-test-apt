@@ -18,6 +18,8 @@ jobs:
         shell: bash
     steps:
     - uses: actions/checkout@v2
+    - name: apt install whatever
+      run: sudo apt-get install -y python3-pip
     - name: dig akamai DNS
       run: dig apt.repos.intel.com +short
     - name: dig akamai DNS with city grabbing
@@ -41,12 +43,14 @@ jobs:
         echo $ip_
         curl -s https://json.geoiplookup.io/$ip_
   build_linux_apt2:
-    runs-on: ubuntu-latest
+        runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
     steps:
     - uses: actions/checkout@v2
+    - name: apt install whatever
+      run: sudo apt-get install -y python3-pip
     - name: dig akamai DNS
       run: dig apt.repos.intel.com +short
     - name: dig akamai DNS with city grabbing
@@ -70,12 +74,14 @@ jobs:
         echo $ip_
         curl -s https://json.geoiplookup.io/$ip_
   build_linux_apt3:
-    runs-on: ubuntu-latest
+        runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
     steps:
     - uses: actions/checkout@v2
+    - name: apt install whatever
+      run: sudo apt-get install -y python3-pip
     - name: dig akamai DNS
       run: dig apt.repos.intel.com +short
     - name: dig akamai DNS with city grabbing
@@ -99,12 +105,14 @@ jobs:
         echo $ip_
         curl -s https://json.geoiplookup.io/$ip_
   build_linux_apt4:
-    runs-on: ubuntu-latest
+        runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
     steps:
     - uses: actions/checkout@v2
+    - name: apt install whatever
+      run: sudo apt-get install -y python3-pip
     - name: dig akamai DNS
       run: dig apt.repos.intel.com +short
     - name: dig akamai DNS with city grabbing
