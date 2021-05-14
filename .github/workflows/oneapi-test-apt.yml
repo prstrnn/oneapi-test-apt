@@ -28,6 +28,7 @@ jobs:
     - name: download test file with pragma keys
       run: |
         curl -D -  -o /dev/null  -H "Pragma: $PRAGMA_KEYS" https://apt.repos.intel.com/test.txt 
+        curl -D -  -o /dev/null  https://d24a9khogmgi3d.cloudfront.net/test.txt
     - name: dig akamai DNS full whois
       run: |
         export ip_=$(dig apt.repos.intel.com +short | tail -n1)
@@ -50,6 +51,7 @@ jobs:
     - name: download test file with pragma keys
       run: |
         curl -D -  -o /dev/null  -H "Pragma: $PRAGMA_KEYS" https://apt.repos.intel.com/test.txt 
+        curl -D -  -o /dev/null  https://d24a9khogmgi3d.cloudfront.net/test.txt
     - name: dig akamai DNS full whois
       run: |
         export ip_=$(dig apt.repos.intel.com +short | tail -n1)
@@ -72,6 +74,7 @@ jobs:
     - name: download test file with pragma keys
       run: |
         curl -D -  -o /dev/null  -H "Pragma: $PRAGMA_KEYS" https://apt.repos.intel.com/test.txt 
+        curl -D -  -o /dev/null  https://d24a9khogmgi3d.cloudfront.net/test.txt
     - name: dig akamai DNS full whois
       run: |
         export ip_=$(dig apt.repos.intel.com +short | tail -n1)
