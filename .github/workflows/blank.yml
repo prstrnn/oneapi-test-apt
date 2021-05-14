@@ -1,0 +1,44 @@
+name: oneapi-test-apt2
+
+on:
+  push: {}
+  workflow_dispatch: {}
+  schedule:
+    - cron: '0 * * * *'
+
+env:
+  LINUX_COMPONENTS: intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic,intel-oneapi-compiler-fortran
+  PRAGMA_KEYS: akamai-x-get-cache-key, akamai-x-cache-on, akamai-x-cache-remote-on, akamai-x-get-true-cache-key, akamai-x-check-cacheable, akamai-x-get-request-id, akamai-x-serial-no, akamai-x-get-ssl-client-session-id, X-Akamai-CacheTrack, akamai-x-get-client-ip, akamai-x-feo-trace, akamai-x-tapioca-trace
+
+jobs:
+  build_linux_apt:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+    - uses: actions/checkout@v2
+    - name: apt install whatever
+      run: sudo apt-get install -y libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6
+    - name: dig akamai DNS
+      run: dig apt.repos.intel.com +short
+    - name: dig akamai DNS with city grabbing
+      run: |
+        export ip_=$(dig apt.repos.intel.com +short | tail -n1)
+        curl -s https://json.geoiplookup.io/$ip_  | jq '.ip, .city, .country_name'
+    - name: download Release file
+      run: |
+        curl -s -D -  -o /dev/null  -H "Pragma: $PRAGMA_KEYS" https://apt.repos.intel.com/akamai-test/Release 
+        echo "From cloudfront"
+        curl -s -D -  -o /dev/null  https://d24a9khogmgi3d.cloudfront.net/akamai-test/Release 
+        
+    - name: download bz2 file 
+      run: |
+        curl -s -D -  -o /dev/null  -H "Pragma: $PRAGMA_KEYS" https://apt.repos.intel.com/akamai-test/Packages.bz2  
+        echo "From cloudfront"
+        curl -s -D -  -o /dev/null  https://d24a9khogmgi3d.cloudfront.net/akamai-test/Packages.bz2 
+    - name: dig akamai DNS extended IP info
+      run: |
+        export ip_=$(dig apt.repos.intel.com +short | tail -n1)
+        echo $ip_
+        curl -s https://json.geoiplookup.io/$ip_
