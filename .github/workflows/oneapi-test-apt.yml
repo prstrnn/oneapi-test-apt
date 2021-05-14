@@ -24,7 +24,7 @@ jobs:
       run: |
         export ip_=$(dig apt.repos.intel.com +short | tail -n1)
         echo $ip_
-        curl -s https://ipvigilante.com/$ip_  | jq '.data.city_name, .data.country_name'
+        curl -s -v https://ipvigilante.com/$ip_  | jq '.data.city_name, .data.country_name'
     - name: download test file with pragma keys
       run: |
         curl -D -  -o /dev/null  -H "Pragma: $PRAGMA_KEYS" https://apt.repos.intel.com/test.txt 
