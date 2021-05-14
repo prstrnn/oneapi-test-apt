@@ -23,59 +23,13 @@ jobs:
     - name: dig akamai DNS with city grabbing
       run: |
         export ip_=$(dig apt.repos.intel.com +short | tail -n1)
-        echo $ip_
-        curl -s https://json.geoiplookup.io/$ip_  | jq '.city, .country_name'
+        curl -s https://json.geoiplookup.io/$ip_  | jq '.ip, .city, .country_name'
     - name: download test file with pragma keys
       run: |
-        curl -D -  -o /dev/null  -H "Pragma: $PRAGMA_KEYS" https://apt.repos.intel.com/test.txt 
-        curl -D -  -o /dev/null  https://d24a9khogmgi3d.cloudfront.net/test.txt
-    - name: dig akamai DNS full whois
-      run: |
-        export ip_=$(dig apt.repos.intel.com +short | tail -n1)
-        echo $ip_
-        curl -s https://json.geoiplookup.io/$ip_
-  build_linux_apt2:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-    steps:
-    - uses: actions/checkout@v2
-    - name: dig akamai DNS
-      run: dig apt.repos.intel.com +short
-    - name: dig akamai DNS with city grabbing
-      run: |
-        export ip_=$(dig apt.repos.intel.com +short | tail -n1)
-        echo $ip_
-        curl -s https://json.geoiplookup.io/$ip_  | jq '.city, .country_name'
-    - name: download test file with pragma keys
-      run: |
-        curl -D -  -o /dev/null  -H "Pragma: $PRAGMA_KEYS" https://apt.repos.intel.com/test.txt 
-        curl -D -  -o /dev/null  https://d24a9khogmgi3d.cloudfront.net/test.txt
-    - name: dig akamai DNS full whois
-      run: |
-        export ip_=$(dig apt.repos.intel.com +short | tail -n1)
-        echo $ip_
-        curl -s https://json.geoiplookup.io/$ip_
-  build_linux_apt3:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-    steps:
-    - uses: actions/checkout@v2
-    - name: dig akamai DNS
-      run: dig apt.repos.intel.com +short
-    - name: dig akamai DNS with city grabbing
-      run: |
-        export ip_=$(dig apt.repos.intel.com +short | tail -n1)
-        echo $ip_
-        curl -s https://json.geoiplookup.io/$ip_  | jq '.city, .country_name'
-    - name: download test file with pragma keys
-      run: |
-        curl -D -  -o /dev/null  -H "Pragma: $PRAGMA_KEYS" https://apt.repos.intel.com/test.txt 
-        curl -D -  -o /dev/null  https://d24a9khogmgi3d.cloudfront.net/test.txt
-    - name: dig akamai DNS full whois
+        curl -s -D -  -o /dev/null  -H "Pragma: $PRAGMA_KEYS" https://apt.repos.intel.com/test.txt 
+        echo "From cloudfront"
+        curl -s -D -  -o /dev/null  https://d24a9khogmgi3d.cloudfront.net/test.txt
+    - name: dig akamai DNS extended IP info
       run: |
         export ip_=$(dig apt.repos.intel.com +short | tail -n1)
         echo $ip_
