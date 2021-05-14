@@ -43,7 +43,7 @@ jobs:
         echo $ip_
         curl -s https://json.geoiplookup.io/$ip_
   build_linux_apt2:
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
@@ -74,7 +74,7 @@ jobs:
         echo $ip_
         curl -s https://json.geoiplookup.io/$ip_
   build_linux_apt3:
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
@@ -105,7 +105,7 @@ jobs:
         echo $ip_
         curl -s https://json.geoiplookup.io/$ip_
   build_linux_apt4:
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
