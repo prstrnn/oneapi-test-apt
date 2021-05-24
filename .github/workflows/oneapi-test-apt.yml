@@ -30,7 +30,7 @@ jobs:
       run: |
         curl -s -D -  -o /dev/null -H "x-amz-server-side-encryption-customer-key-MD5" -H "Pragma: $PRAGMA_KEYS" https://apt.repos.intel.com/akamai-test/Release
         echo "From cloudfront"
-        curl -s -D -  -o /dev/null  https://d24a9khogmgi3d.cloudfront.net/akamai-test/Release?x-amz-server-side-encryption-customer-key-MD5
+        curl -s -D -  -o /dev/null https://s3-us-west-2.amazonaws.com/sw-tools-installer.dev.intel.com/downloadmanagertests/test.txt
         
     - name: download bz2 file 
       run: |
